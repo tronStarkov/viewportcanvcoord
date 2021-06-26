@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>	<meta charset ="UTF-8">
+	<title>From Viewport to the Canvas coordinate system</title> </head>
+<body>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+	var canvas = document.getElementById("canvas")
+	var ctx = canvas.getContext("2d")	
+
+	ctx.fillStyle = "palegreen"
+	ctx.fillRect(0, 0, 400, 400)
+	
+	ctx.strokeStyle = "blue"
+	ctx.lineWidth = 3
+	ctx.beginPath()
+	ctx.moveTo(0, 200)
+	ctx.lineTo(400, 200)
+	ctx.stroke()
+
+	addEventListener("click", function(event){
+		//console.log("x = ", event.clientX,"y = ", event.clientY)
+		
+		var cnv = canvas.getBoundingClientRect()
+		
+		//console.log("xC = ", cnv.left,"yC = ", cnv.top)
+		
+		console.log("x = ", event.clientX - cnv.left,"y = ", event.clientY - cnv.top)
+	})
+
+</script>
+</body>
+</html>
